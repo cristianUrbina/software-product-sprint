@@ -14,6 +14,6 @@ public class HelloWorldServlet extends HttpServlet {
   public void doGet(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String name = "Cristian";
     response.setContentType("text/html;");
-    response.getWriter().println("<h1>Hello "+name+"</h1>");
+    response.getWriter().println("Hello "+name);
   }
 }
