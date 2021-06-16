@@ -28,10 +28,10 @@ function addRandomGreeting() {
 }
 
 
-async function sayHello(){
+async function getRandomFact(){
     const responseFromServer = await fetch('/hello');
     const facts = await responseFromServer.json();
     const fact = facts[Math.floor(Math.random() * facts.length)];
-    const helloContainer = document.getElementById('hello-container');
-    helloContainer.innerText = fact;
+    const randomFactContainer = document.getElementById('random-fact-container');
+    randomFactContainer.innerText = fact;
 }

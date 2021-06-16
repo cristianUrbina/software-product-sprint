@@ -8,6 +8,9 @@
   margin-top: 20px;
 }
 
+#random-fact-container{
+  color:blue;
+}
 .image-thumbnails img {
   margin: 10px;
   max-height: 200px;
