@@ -17,9 +17,11 @@ public class HelloWorldServlet extends HttpServlet {
     randomPhrases.add("I don't like cake.");
     randomPhrases.add("I love bread.");
     randomPhrases.add("My favorite TV show is Sponge Bob.");
-    // String name = "Cristian";
-    // response.setContentType("text/html;");
-    // response.getWriter().println("Hello "+name);
+    randomPhrases.add("Architects is my favorite band.");
+    randomPhrases.add("Victor Wooten is my favorite bassist.");
+    randomPhrases.add("My favorite programming language is C++.");
+    randomPhrases.add("I've been using vim for a while and it is amazing.");
+    randomPhrases.add("Green is my favorite color.");
     String json = toJson(randomPhrases);
     response.setContentType("application/json");
     response.getWriter().println(json);
