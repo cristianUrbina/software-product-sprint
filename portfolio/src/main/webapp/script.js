@@ -29,7 +29,6 @@ function addRandomGreeting() {
 
 
 async function sayHello(){
-    alert("asyn function running");
     const responseFromServer = await fetch('/hello');
     const facts = await responseFromServer.json();
     const fact = facts[Math.floor(Math.random() * facts.length)];
