@@ -4,11 +4,11 @@
   <meta charset="UTF-8">
   <title>My Portfolio</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAYb3Kf3Ev-p0iGk3NZgYHkpufVeMeC1D4"></script>
   <script src="script.js"></script>
   </head>
-  <body>
+  <body onload= "createMap()">
   <div id="content">
-    
     <h1>Cristian's portfolio</h1>
     <h2>About me</h2>
     <div id =></div>
@@ -46,6 +46,7 @@
       I've been enroled in competitive programming for almost a year.
       The last topic I've been working on is dynamic programming.
     </p>
+    <h2>Projects</h2>
     <ol>
       <li> 
         <span class = "ProjectTitle">Automatic Elevator for Industry</span>
@@ -69,6 +70,9 @@
       </li>
     </ol>
     <hr>
+    <h2>My hometown</h2>
+    <div id="map">
+    </div>
     <h2>Contact me</h2>
     <p><a href = "https://www.linkedin.com/in/cristian-omar-urbina-herrera-9182391b8/">LinkedIn</a></p>
     <p><a href = "https://github.com/cristianUrbina">GitHub</a></p>
@@ -112,7 +116,7 @@
     <button onclick = "getRandomFact()">Click here to get a random fact</button>
     <p id = "random-fact-container"></p> 
     <form action = "/form-handler" method="POST">
-      <h1>Contact me</h1>
+      <h2>Contact me</h2>
       <p>First name</p>
       <textarea name="first-name"></textarea>
       <p>Last name</p>
