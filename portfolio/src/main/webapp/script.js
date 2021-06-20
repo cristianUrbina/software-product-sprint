@@ -57,5 +57,7 @@ function createMap() {
       position: house,
       map: map,
       title: 'My previous house'
-  })
+  });
+  const highschoolInfoWindow = new google.maps.InfoWindow({content: 'CBTIs 103'});
+  highschoolInfoWindow.open(map,highschoolMarker);
 }
