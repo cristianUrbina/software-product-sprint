@@ -38,13 +38,24 @@ async function getRandomFact(){
 
 /** Creates a map and adds it to the page. */
 function createMap() {
-  var hometown = new google.maps.LatLng(22.265616, -97.855937);
-  var mapOptions = {
+  const hometown = new google.maps.LatLng(22.265616, -97.855937);
+  const highschool = new google.maps.LatLng(22.279427, -97.853034);
+  const house = new google.maps.LatLng(22.24068001371074, -97.84064914423382);
+  const mapOptions = {
     zoom: 12,
     center: hometown,
     mapTypeId: 'hybrid',
     mapId: 'd60cfbd9b7bbc615'
   };
-  const map = new google.maps.Map(
-      document.getElementById('map'), mapOptions);
+  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  const highschoolMarker = new google.maps.Marker({
+      position: highschool,
+      map: map,
+      title: 'My Highschool'
+  });
+  const houseMarker = new google.maps.Marker({
+      position: house,
+      map: map,
+      title: 'My previous house'
+  })
 }
