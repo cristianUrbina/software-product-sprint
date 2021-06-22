@@ -15,6 +15,10 @@
 /**
  * Adds a random greeting to the page.
  */
+
+let map;
+let tmpMarker;
+
 function addRandomGreeting() {
   const greetings =
       ['I love to eat bread', 'I like gossip, specially when it does not involve me','Architects is my favorite band', '"I\'m ready"-Sponge Bob'];
@@ -47,7 +51,10 @@ function createMap() {
     mapTypeId: 'hybrid',
     mapId: 'd60cfbd9b7bbc615'
   };
-  const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  map = new google.maps.Map(document.getElementById('map'), mapOptions);
+  map.addListener('click', (event) => {
+      createMarkerForEdit(event.latLng.lat(), event.latLng.lng());
+  });
   const highschoolMarker = new google.maps.Marker({
       position: highschool,
       map: map,
@@ -60,4 +67,45 @@ function createMap() {
   });
   const highschoolInfoWindow = new google.maps.InfoWindow({content: 'CBTIs 103'});
   highschoolInfoWindow.open(map,highschoolMarker);
+}
+
+function createMarkerForDisplay(lat, lng, content) {
+  const marker =
+      new google.maps.Marker({position: {lat: lat, lng: lng}, map: map});
+
+  const infoWindow = new google.maps.InfoWindow({content: content});
+  marker.addListener('click', () => {
+    infoWindow.open(map, marker);
+  });
+}
+
+function createMarkerForEdit(lat, lng){
+    if(tmpMarker){
+        tmpMarker.setMap(null);
+    }
+    tmpMarker = new google.maps.Marker({position:{lat:lat, lng:lng}, map:map});
+    const infoWindow = new google.maps.InfoWindow({content:buildInfoWindowInput(lat,lng)});
+    google.maps.event.addListener(infoWindow, 'closeclick',() => {
+        tmpMarker.setMap(null);
+    });
+    infoWindow.open(map,tmpMarker);
+}
+
+function buildInfoWindowInput(lat, lng) {
+  const textBox = document.createElement('textarea');
+  const button = document.createElement('button');
+  button.appendChild(document.createTextNode('Submit'));
+
+  button.onclick = () => {
+    // postMarker(lat, lng, textBox.value);
+    createMarkerForDisplay(lat, lng, textBox.value);
+    tmpMarker.setMap(null);
+  };
+
+  const containerDiv = document.createElement('div');
+  containerDiv.appendChild(textBox);
+  containerDiv.appendChild(document.createElement('br'));
+  containerDiv.appendChild(button);
+
+  return containerDiv;
 }
