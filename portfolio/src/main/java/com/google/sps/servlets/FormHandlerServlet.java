@@ -19,12 +19,18 @@ public class FormHandlerServlet extends HttpServlet {
   @Override
   public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
     String first_name = Jsoup.clean(request.getParameter("first-name"), Whitelist.none());
+    String last_name = Jsoup.clean(request.getParameter("last-name"), Whitelist.none());
+    String email = Jsoup.clean(request.getParameter("email"), Whitelist.none());
+    String phone = Jsoup.clean(request.getParameter("phone"), Whitelist.none());
 
     Datastore datastore = DatastoreOptions.getDefaultInstance().getService();
     KeyFactory keyFactory = datastore.newKeyFactory().setKind("Contact info");
     FullEntity taskEntity =
         Entity.newBuilder(keyFactory.newKey())
             .set("first-name", first_name)
+            .set("last-name", last_name)
+            .set("email", email)
+            .set("phone", phone)
             .build();
     datastore.put(taskEntity);
 
@@ -37,9 +43,9 @@ public class FormHandlerServlet extends HttpServlet {
 
     // Print the value so you can see it in the server logs.
     System.out.println("First name: "+ first_name);
-    // System.out.println("Last name: "+ lastName);
-    // System.out.println("Email: " + email);
-    // System.out.println("Phone: "+ phone);
+    System.out.println("Last name: "+ last_name);
+    System.out.println("Email: " + email);
+    System.out.println("Phone: "+ phone);
 
     // Write the value to the response so the user can see it.
     // response.sendRedirect("https://curbinaherrera-sps-summer21.uc.r.appspot.com/");
