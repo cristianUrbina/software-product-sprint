@@ -91,13 +91,22 @@ function createMarkerForEdit(lat, lng){
     infoWindow.open(map,tmpMarker);
 }
 
+function postMarker(lat, lng, content) {
+  const params = new URLSearchParams();
+  params.append('lat', lat);
+  params.append('lng', lng);
+  params.append('content', content);
+
+  fetch('/markers', {method: 'POST', body: params});
+}
+
 function buildInfoWindowInput(lat, lng) {
   const textBox = document.createElement('textarea');
   const button = document.createElement('button');
   button.appendChild(document.createTextNode('Submit'));
 
   button.onclick = () => {
-    // postMarker(lat, lng, textBox.value);
+    postMarker(lat, lng, textBox.value);
     createMarkerForDisplay(lat, lng, textBox.value);
     tmpMarker.setMap(null);
   };
